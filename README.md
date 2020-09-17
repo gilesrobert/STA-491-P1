@@ -1,1 +1,1 @@
-This is a project template for Creative Coding STA 491
+Giles Schlehuber - Sta 491 CC
