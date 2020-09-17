@@ -1,2 +1,1 @@
-# STA-491-P1
-This is my repository.
+This is a project template for Creative Coding STA 491
