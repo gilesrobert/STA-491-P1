@@ -1,6 +1,8 @@
+
 let xpos =100;
 let ypos =100;
-let ballspeed = 5;
+let xspeed = 10;
+let yspeed = 5;
 
 function setup() {
 
@@ -14,26 +16,26 @@ function draw() {
   circle(xpos, ypos, 100);
 // these are the controls for ball movement
 
-xpos = xpos +ballspeed;
+xpos = xpos +xspeed;
 
 
-if(xpos > width){
-ballspeed = -ballspeed;
+if(xpos > width - 50){
+xspeed = -xspeed;
 }
 
-if(xpos < 0){
-  ballspeed = -ballspeed;
+if(xpos < 50){
+  xspeed = -xspeed;
 }
 
-ypos = ypos +ballspeed;
+ypos = ypos +yspeed;
 
 
-if(ypos > height){
-ballspeed = -ballspeed;
+if(ypos > height - 50){
+yspeed = -yspeed;
 }
 
-if(ypos < 0){
-  ballspeed = -ballspeed;
+if(ypos < 50){
+  yspeed = -yspeed;
 }
 // these are the controls for clicking on the ball
 if(mouseIsPressed & dist(mouseX, mouseY) <250){
