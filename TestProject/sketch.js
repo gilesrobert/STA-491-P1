@@ -1,32 +1,92 @@
-//sets up my offset for use later
-let xoffset = 0.0;
-let yoffset = 0.0;
+// variables controllig position and speed of moving balls
+let xpos = 125;
+let ypos = 0;
+let ballspeed = 10;
+let circleSize = 550;
+let circleSizeGetVeryBig = 550;
+let whichCircleClicked = 0;
 
-
-function setup(){
-  createCanvas(windowWidth,windowHeight);
-//sets up the bounds in which the circle path can move (allows it to move in many directions)
-
-  xoffset = 1000000000;
-  yoffset = 999999999;
+function setup() {
+    createCanvas(windowWidth, windowHeight);
 
 }
 
- function draw(){
-   noStroke();
 
-//map and noiseX together sequences the positionof the ellipse in x axis depending on the standing of the offset setting. the same is true of the y variation
-   let noiseX =noise(xoffset);
-   let x = map(noiseX, 0,1,0, width);
-   let noiseY = noise(yoffset);
-   let y = map(noiseY,0, 1, 0, height);
-// *500 determines the ellipse size. it depends on the offset whether it is larger or smaller
-   ellipse(x,y,noise(xoffset)*500,noise(xoffset)*500);
-
-fill(random(0,255))
-//makes the circles follow consecutively and very close by (0.005 is such a small number)
-  xoffset = xoffset + 0.005;
-  yoffset = yoffset + 0.005;
+function draw() {
 
 
- }
+    //creating small circle following mouse
+    noStroke();
+    background(0, 200, 200);
+
+    if (mouseIsPressed) {
+        if (mouseX > 0 && mouseX < width / 2) {
+            if (mouseY > 0 && mouseY < height / 2) {
+                //Quad 1 clicked
+                whichCircleClicked = 1;
+                circleSizeGetVeryBig = circleSize;
+            }
+            if (mouseY > height / 2 && mouseY < height) {
+                whichCircleClicked = 3;
+                circleSizeGetVeryBig = circleSize;
+            }
+        }
+        if (mouseX > width / 2 && mouseX < width) {
+            if (mouseY > 0 && mouseY < height / 2) {
+                whichCircleClicked = 2;
+                circleSizeGetVeryBig = circleSize;
+            }
+            if (mouseY > height / 2 && mouseY < height) {
+                whichCircleClicked = 4;
+                circleSizeGetVeryBig = circleSize;
+            }
+        }
+
+    }
+
+    //Quad 1 Get Very Big
+    if (whichCircleClicked === 1) {
+        circle(0, 0, circleSizeGetVeryBig = circleSizeGetVeryBig + 1);
+    }
+
+    //Quad 2 Get Very Big
+    if (whichCircleClicked === 2) {
+        circle(width, 0, circleSizeGetVeryBig = circleSizeGetVeryBig + 1);
+    }
+
+    //Quad 3 Get Very Big
+    if (whichCircleClicked === 3) {
+        circle(0, height, circleSizeGetVeryBig = circleSizeGetVeryBig + 1);
+    }
+
+    //Quad 4 Get Very Big
+    if (whichCircleClicked === 4) {
+        circle(width, height, circleSizeGetVeryBig = circleSizeGetVeryBig + 1);
+    }
+
+    //central appearing circle when mouse hovers over it
+    //Quad 1
+    if (dist(0, 0, mouseX, mouseY) < 250) {
+        circle(0, 0, circleSize);
+    }
+
+    //Quad 2
+    if (dist(width, 0, mouseX, mouseY) < 250) {
+        circle(width, 0, circleSize);
+    }
+
+    //Quad 3
+    if (dist(0, height, mouseX, mouseY) < 250) {
+        circle(0, height, circleSize);
+    }
+
+    //Quad 4
+    if (dist(width, height, mouseX, mouseY) < 250) {
+        circle(width, height, circleSize);
+    }
+
+
+
+
+
+}
