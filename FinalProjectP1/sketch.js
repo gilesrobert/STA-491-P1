@@ -14,6 +14,7 @@ function setup() {
 
 function draw() {
 
+noStroke();
     background(0, 200, 200);
 //makes the circles appear based on clicking in whichever quadrant is clicked on.
     if (mouseIsPressed) {
