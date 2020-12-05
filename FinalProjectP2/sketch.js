@@ -3,21 +3,23 @@ let xpos = 125;
 let ypos = 0;
 let ballspeed = 10;
 let circleSize = 550;
+//sets up variables controlling the size of circles
 let circleSizes = [550, 550, 550, 550];
 let circleSizeGetVeryBigOne = 550;
 let circleSizeGetVeryBigTwo = 550;
 let circleSizeGetVeryBigThree = 550;
 let circleSizeGetVeryBigFour = 550;
-
+//
 let quadOneMoving = false;
 let quadTwoMoving = false;
 let quadThreeMoving = false;
 let quadFourMoving = false;
+//these set the different speeds at which the circles grow and shrink
 let growthRateOne = 90;
 let growthRateTwo = 50;
 let growthRateThree = 120;
 let growthRateFour = 300;
-
+//determines when they shrink. until the reach their limit, shrink is false. Once true, they shrink
 let circleSizeActuallyGetSmallOne = false;
 let circleSizeActuallyGetSmallTwo = false;
 let circleSizeActuallyGetSmallThree = false;
@@ -27,20 +29,19 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
 }
 
-
 function draw() {
 
-
-    //creating small circle following mouse
-    noStroke();
     background(0, 0, 0);
-
+//makes circles appear once clicked
     if (mouseIsPressed) {
+      //this section determines which quad is being pressed
         if (mouseX > 0 && mouseX < width / 2) {
             if (mouseY > 0 && mouseY < height / 2) {
                 //Quad 1 clicked
                 quadOneMoving = !quadOneMoving;
+                //using an array to select my circle
                 circleSizes[0] = circleSize;
+                //stops circle from shrinking until it reaches full size
                 circleSizeActuallyGetSmallOne = false;
             }
             if (mouseY > height / 2 && mouseY < height) {
@@ -68,6 +69,7 @@ function draw() {
     }
 
     //Quad 1 Get Very Big
+    //this section actually controls when and how the circles change in size. They grow until max and then shrink. it is false until max
     if (quadOneMoving) {
         if (circleSizeActuallyGetSmallOne) {
             circle(0, 0, circleSizes[0] = circleSizes[0] - growthRateOne);
@@ -75,6 +77,7 @@ function draw() {
             circle(0, 0, circleSizes[0] = circleSizes[0] + growthRateOne);
         }
     }
+    //determines random color of circles
     fill(random(0, 255), random(0, 255), random(0, 255));
 
     //Quad 2 Get Very Big
@@ -106,7 +109,7 @@ function draw() {
         }
 
     }
-
+    //this section determines the rate at which the circles grow and shrink
     if (circleSizes[0] > 2500) {
         circleSizeActuallyGetSmallOne = true;
     }
